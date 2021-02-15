@@ -228,7 +228,7 @@ while True:
             while True:
 
                 timec = time.strftime("%H:%M:%S", time.localtime())
-                if timec == '7:00:00':
+                if timec == '07:00:00':
                     sxx(du)
         
 # 选项界面
