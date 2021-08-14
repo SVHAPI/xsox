@@ -3,7 +3,7 @@ import requests
 import datetime
 
 # Webhook企业微信机器人key
-key = 'b3fdd8a7-80e2-4c67-9215-b21b49a9181a'
+key = ''
 
 def Webhook(text):
     # Webhook企业微信机器人消息推送
