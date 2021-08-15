@@ -69,14 +69,18 @@ def main():
                 timeArray = time.localtime(active['data']['data'][0]['daily_at'])  # 时间戳转换
                 otherStyleTime = time.strftime("%Y-%m-%d", timeArray)
                 if timec == otherStyleTime:
-                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：' + str(active['data']['data'][0]['score']) + '\n>已离线!\n--------------'  # 设备离线的
+                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：' + str(active['data']['data'][0]['score']) + '\n>设备离线!\n--------------'  # 设备离线的
+                else:
+                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：0\n>设备离线!\n--------------'  # 设备离线的
             else:
                 active = requests.get(url=url,headers={'authorization':token}).json()  # 获取设备状态
                 timec = time.strftime("%Y-%m-%d", time.localtime())  # 获取当前时间
                 timeArray = time.localtime(active['data']['data'][0]['daily_at'])  # 时间戳转换
                 otherStyleTime = time.strftime("%Y-%m-%d", timeArray)
                 if timec == otherStyleTime:
-                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：' + str(active['data']['data'][0]['score']) + '\n>在线!\n--------------'  # 设备在线的
+                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：' + str(active['data']['data'][0]['score']) + '\n>设备在线!\n--------------'  # 设备在线的
+                else:
+                    textt += '\n>UID：' + i['devId'] + '\n>今日获取星愿：0\n>设备在线!\n--------------'  # 设备离线的
 
         #####################消息推送#####################
         text = '<font color="info">**甜糖自动收星星**</font>\n账号：{}\n时间：{}\n总额：{}\n提现：{}\n今日获得：{}\n设备数量：{}\n######设备信息######'.format(phoneNum,timec,score,tix,xingyuan,len(devList))
@@ -103,8 +107,9 @@ def main():
 # 每n秒执行一次
 def timer(n):
     while True:
-        print('开始执行')
+        print('开始执行....')
         main()
+        print('开始等待下一次执行.....')
         time.sleep(86400)
 
 timer(86400)
